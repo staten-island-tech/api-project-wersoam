@@ -5,10 +5,11 @@ const dom = {
   button: document.getElementById("button"),
   text: document.getElementById("text"),
 };
+
 const card_image =
   "http://yugiohprices.com/api/card_image/witchcrafter madame verre";
 const card_effect =
-  "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Tornado%20Dragon";
+  "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=gunkan%20suship%20shari%20red";
 
 async function getinfo(card_effect) {
   try {
@@ -23,17 +24,17 @@ async function getinfo(card_effect) {
 getinfo(card_effect);
 const inserteffect = async () => {
   // defining an async arrow function
-  const moneff = await fetchData(getinfo);
+  const moneff = await fetchData(getinfo(card_effect));
   dom.text.innerHTML = `effect: ${moneff.data.desc}`;
 };
 
 inserteffect();
 
-dom.button.addEventListener("click", function () {
-  console.log(dom.input);
-  dom.image.insertAdjacentHTML(
-    "beforeend",
-    `<img src=${imagelink}><p>"https://yugiohprices.com/api/card_data/${dom.input}"</p>`
-  );
-});
-const imagelink = `http://yugiohprices.com/api/card_image/${dom.input}`;
+// dom.button.addEventListener("click", function () {
+//   console.log(dom.input.value);
+//   dom.image.insertAdjacentHTML(
+//     "beforeend",
+//     `<img src=${imagelink}><p>"https://yugiohprices.com/api/card_data/${dom.input.value}"</p>`
+//   );
+// });
+// const imagelink = `http://yugiohprices.com/api/card_image/${dom.input.value}`;
