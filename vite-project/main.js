@@ -11,10 +11,12 @@ const card_image =
 const card_effect =
   "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=gunkan%20suship%20shari%20red";
 
-async function getinfo(card_effect) {
+async function getinfo() {
   try {
+  
     const response = await fetch(card_effect);
     const data = await response.json();
+    if (!response.ok){throw new Error(`failed to fetch post: ${response.status}`)}
     console.log(data);
     return data;
   } catch (error) {
@@ -23,7 +25,6 @@ async function getinfo(card_effect) {
 }
 getinfo(card_effect);
 const inserteffect = async () => {
-  // defining an async arrow function
   const moneff = await fetchData(getinfo(card_effect));
   dom.text.innerHTML = `effect: ${moneff.data.desc}`;
 };
