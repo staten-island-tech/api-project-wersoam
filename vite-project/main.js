@@ -13,29 +13,29 @@ const card_effect =
 
 async function getinfo() {
   try {
-  
     const response = await fetch(card_effect);
     const data = await response.json();
-    if (!response.ok){throw new Error(`failed to fetch post: ${response.status}`)}
+    dom.text.textContent = data.desc;
     console.log(data);
     return data;
   } catch (error) {
     console.log(error);
   }
 }
-getinfo(card_effect);
+let newarr = [];
+
 const inserteffect = async () => {
-  const moneff = await fetchData(getinfo(card_effect));
-  dom.text.innerHTML = `effect: ${moneff.data.desc}`;
+  const moneff = await getinfo();
+  dom.image.innerHTML = `effect: ${moneff.data.desc}`;
 };
 
 inserteffect();
 
-// dom.button.addEventListener("click", function () {
-//   console.log(dom.input.value);
-//   dom.image.insertAdjacentHTML(
-//     "beforeend",
-//     `<img src=${imagelink}><p>"https://yugiohprices.com/api/card_data/${dom.input.value}"</p>`
-//   );
-// });
-// const imagelink = `http://yugiohprices.com/api/card_image/${dom.input.value}`;
+dom.button.addEventListener("click", function () {
+  console.log(dom.input.value);
+  dom.image.insertAdjacentHTML(
+    "beforeend",
+    `<img src=${imagelink}><p>"https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${dom.input.value}"</p>`
+  );
+});
+const imagelink = `http://yugiohprices.com/api/card_image/${dom.input.value}`;
