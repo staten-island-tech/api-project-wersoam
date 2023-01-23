@@ -5,15 +5,20 @@ const dom = {
   button: document.getElementById("btn"),
   text: document.getElementById("text"),
 };
-const quote = "https://animechan.vercel.app/api/random/character?name=king";
+const card =
+  "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=gunkan%20suship%20shari%20red";
 
 async function getinfo() {
   try {
-    const response = await fetch(quote);
-    const data = await response.json();
-    dom.image.innerHTML = `${data.character}: ${data.quote}`;
-    console.log(data);
-    return data;
+    const response = await fetch(card);
+    const info = await response.json();
+    info.array.forEach((desc) => {});
+    dom.image.insertAdjacentHTML(
+      "beforeend",
+      `<p>${info.data.name}: ${info.data.desc}</p>`
+    );
+    console.log(info);
+    return info;
   } catch (error) {
     console.log(error);
   }
