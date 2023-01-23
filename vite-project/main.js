@@ -12,25 +12,20 @@ async function getinfo() {
   try {
     const response = await fetch(card);
     const info = await response.json();
-    info.array.forEach((desc) => {});
-    dom.image.insertAdjacentHTML(
-      "beforeend",
-      `<p>${info.data.name}: ${info.data.desc}</p>`
-    );
-    console.log(info);
+
+    dom.image.innerHTML = JSON.stringify(info.data);
     return info;
   } catch (error) {
     console.log(error);
   }
 }
-
-// const inserteffect = async () => {
-//   const moneff = await getinfo();
-//   dom.image.innerHTML = `effect: ${moneff.data.desc}`;
-// };
+async function inserteffect() {
+  const moneff = await getinfo();
+  dom.image.innerHTML = `effect: ${moneff.data.desc}`;
+}
 
 getinfo();
 
 dom.button.addEventListener("click", function () {
-  getinfo();
+  inserteffect();
 });
