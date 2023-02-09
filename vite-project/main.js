@@ -5,6 +5,7 @@ const dom = {
   button: document.getElementById("btn"),
   text: document.getElementById("text"),
 };
+const value = dom.input.textContent;
 const card = `https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${dom.input.textContent}`;
 async function getinfo() {
   try {
@@ -21,8 +22,8 @@ async function inserteffect() {
   console.log(moneff);
   dom.image.insertAdjacentHTML(
     "beforeend",
-    `<img src="${moneff.data[0].card_images[0].image_url}" >
-  <p>effect: ${moneff.data[0].desc}</p>`
+    `<div><img src="${moneff.data[0].card_images[0].image_url}" >
+  <p>effect: ${moneff.data[0].desc}</p></div>`
   );
 }
 dom.button.addEventListener(`click`, function () {
