@@ -12,7 +12,7 @@ async function getinfo(card) {
     if (response.status > 199 || response.status > 300) {
       dom.image.insertAdjacentHTML(
         "beforeend",
-        `<div class="ygo"><img src="${info.data[0].card_images[0].image_url}" ></div>
+        `<div class="ygo"><img src="${info.data[0].card_images[0].image_url}" alt="${info.data[0].name}"></div>
         <div class="ygo2"><p class="textcolor">effect: ${info.data[0].desc}</p></div>`
       );
     } else {
@@ -42,7 +42,7 @@ async function inserteffect() {
     let moneff = await feedback.json();
     dom.image.insertAdjacentHTML(
       "beforeend",
-      `<div class="ygo"><img src="${moneff.data[0].card_images[0].image_url}" ></div>
+      `<div class="ygo"><img src="${moneff.data[0].card_images[0].image_url}" alt=" Aluber the goober of Duber" ></div>
       <div class="ygo2"><p class="textcolor">effect: ${moneff.data[0].desc}</p></div>`
     );
   } catch (error) {
